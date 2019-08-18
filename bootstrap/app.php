@@ -17,3 +17,5 @@ try{
 	die('Please create .env file');
 }
 
+require_once __DIR__ . '/container.php';
+
