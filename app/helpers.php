@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Debug\HtmlDumper;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 function ddd($variable)
 {

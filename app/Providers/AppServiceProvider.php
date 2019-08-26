@@ -7,6 +7,7 @@ use Zend\Diactoros\ServerRequestFactory;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Route\Router;
 use Zend\Diactoros\Response;
+use League\Route\Strategy\ApplicationStrategy;
 
 class AppServiceProvider extends AbstractServiceProvider
 {
@@ -18,6 +19,7 @@ class AppServiceProvider extends AbstractServiceProvider
 	];
 	public function register()
 	{
+
 		$container = $this->getContainer();
 
 
@@ -28,15 +30,18 @@ class AppServiceProvider extends AbstractServiceProvider
 			);
 		});
 
-		$container->share('router' , Router::class);
+		$container->share('router' , function() use ($container){
+			$strategy = (new ApplicationStrategy)->setContainer($container);
+			return (new Router)->setStrategy($strategy);
+		});
 
 		$container->share('response' , Response::class);
 
 		$container->share('emitter' , SapiEmitter::class);
 
 	}
-	
-	
+
+
 
 
 }

@@ -22,7 +22,6 @@ $router = $container->get('router');
 
 require_once __DIR__ . '/../routes/web.php';
 
-
 $response = $router->dispatch($container->get('request'));
 
 
